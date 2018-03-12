@@ -4,8 +4,27 @@
 #include <string.h>
 #include <stdio.h>
 using namespace std;
-string getSubsequence(string input){
-    
+string getSubsequence(string s){
+    int flag=0;
+    int previous=0;
+    string res="";
+    for (char ch='z';ch>='a';ch--) {
+        int count = 0;
+        for (int i =previous;i<s.length();i++) {
+            if (s[i] == ch)
+                count++;
+        }
+        if (count>=1) {
+            for (int i=previous;i<s.length();i++) {
+                if (s[i] == ch) {
+                    res+=ch;
+                    flag = i;
+                }
+            }
+            previous = flag;
+        }
+    }
+    return res;
 }
 int main(){
     int testCases;
